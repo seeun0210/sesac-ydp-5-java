@@ -26,5 +26,12 @@ public class inputOutput {
         System.out.println("결혼여부:"+single);
 
         sc.close();//스캐너 닫기
+        Scanner sc2=new Scanner(System.in);
+        System.out.println("이름을 입력하세요: \n");
+        String name2=sc2.nextLine();
+        System.out.println("니이를 입력하세요: \n");
+        int age2=sc2.nextInt();
+        System.out.println("안녕하세요! "+name2+"님"+"("+age2+")");
+        sc2.close();
     }
 }
