@@ -1,5 +1,6 @@
 package _03_array;
 import java.util.Arrays;
+import java.util.Scanner;
 //표준 배열
 
 //배열
@@ -106,5 +107,108 @@ doubleArr[2]=4.2;
             }
             System.out.println();
         }
+        //////////////////////
+//객체를 참조하는 배열
+//-기본타입 배열 각 원소에 "값"이 저장
+//-참조타입 배열 각 원소에 "참조(주소)"가 저장
+        String[] lengs= new String[3];
+        lengs[0]="JAVA";
+        lengs[1]="JAVA";
+        lengs[2]=new String("JAVA");
+
+        // 0,1:문자열 리터럴 저장. 문자열 리터럴; JAVA 컴파일러가 문자열 풀(string pool) 공유된 영역에 저장
+        // 2: new 연산자로 문자열 객체를 생성(참조값도 새로 받음)
+        System.out.println(lengs[0]==lengs[1]);//true: 같은 객체 참조
+        System.out.println(lengs[1]==lengs[2]);//false: 다른 객체 참조
+        System.out.println(lengs[0].equals(lengs[2]));//true: 같은 문자열
+
+        //////////////////////////
+        //배열 관련 메소드
+        //배열 복사
+        //-표준 배열은 크기가 고정 -> 더 많은 저장공간이 필요하다면, 더 큰 길이의 배열을 새로 만들어 기존 배열을 복사
+
+        //ver1. 반복문 요소를 하나씩 복사
+        int[] originArray={1,2,3};
+        int[] newArray=new int[5];
+        System.out.println("originArray: "+Arrays.toString(originArray));//originArray: [1, 2, 3]
+        for(int i=0;i<originArray.length;i++){
+                newArray[i]=originArray[i];}
+        System.out.println("newArray: "+Arrays.toString(newArray));//newArray: [1, 2, 3, 0, 0]
+        //ver2. arraycopy() 메소드
+        //arraycopy(Object src, int srcPos, Object dest, int destPos, int length);
+        //-Object src:원본 배열
+        //-int srcPos:원본 배열 복사 시작 인덱스
+        //-Object dest:새로운 배열
+        //-int destPos:새로운 배열 붙여넣기 시작인덱스
+        //-int length:복사할 원소 개수
+        String[] originFruits={"apple","banana","kiwi"};
+        String[] newFruits =new String[5];
+
+        System.arraycopy(originFruits,0,newFruits,0,originFruits.length);
+//        System.arraycopy(originFruits,1,newFruits,0,originFruits.length-1);
+//        System.arraycopy(originFruits,0,newFruits,0,originFruits.length-1);
+        System.out.println("originFruits: "+Arrays.toString(originFruits));
+        System.out.println("newFruits: "+Arrays.toString(newFruits));
+
+        //Arrays 메소드
+        //copyOf(arr, copyArrLength)
+        int[] originArr={1,2,3,4,5};
+        System.out.println("originArr: "+Arrays.toString(originArr));
+        int[] copiedArr=Arrays.copyOf(originArr,3);
+        System.out.println("copiedArr: "+Arrays.toString(copiedArr));
+
+        //copyOfRange(arr,sIdx, eIdx)
+        int[] rangeArr=Arrays.copyOfRange(originArr, 1,4);
+        System.out.println("rangeArr: "+Arrays.toString(rangeArr));
+
+        //fill(arr,n)
+        int[] filledArr= new int[5];
+        Arrays.fill(filledArr, 7);
+        System.out.println(Arrays.toString(filledArr));
+
+        //sort()
+        int[] unsortedArr={8,2,6,9,1};
+        Arrays.sort(unsortedArr);//오름차순으로 정렬
+        System.out.println(Arrays.toString(unsortedArr));//정렬한 것을 출력
+
+        //equals(arr1,arr2)
+        int[] array1={1,2,3};
+        int[] array2={1,2,3};
+        int[] array3={4,2,3};
+        int[] array4=new int[]{1,2,3};
+        System.out.println(Arrays.equals(array1,array2));//true
+        System.out.println(Arrays.equals(array1,array3));//false
+        System.out.println(Arrays.equals(array1,array4));//true
+        System.out.println(array1==array2);//false
+        System.out.println(array1==array3);//false
+        System.out.println(array1==array4);//false
+
+        //deepEquals(arr1,arr2)
+        int[][] deepArray1={{1,2},{3,4}};
+        int[][] deepArray2={{1,2},{3,4}};
+        int[][] deepArray3={{1,2},{3,5}};
+        System.out.println(Arrays.deepEquals(deepArray1,deepArray2));//true
+        System.out.println(Arrays.deepEquals(deepArray1,deepArray3));//false
+
+        //binarySearch(arr,val):단 배열이 정렬된 상태여야 함.
+        int[] sortedArray={10,20,30,40,60,90};
+        int idx=Arrays.binarySearch(sortedArray,60);
+        System.out.println(idx);//4 정렬이 안되어 있으면 -6 이딴식으로 나오네
+
+    Scanner sc=new Scanner(System.in);
+        System.out.println("5개의 정수를 입력하세요.\n");
+        int[] numArr=new int[5];
+        int sum1=0;
+        for(int i=0;i<numArr.length;i++){
+
+            numArr[i]=sc.nextInt();
+            sum1+=numArr[i];
+        }
+        System.out.println((double)sum1/numArr.length);
+
+
+
+
+
     }
 }
