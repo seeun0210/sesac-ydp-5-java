@@ -8,6 +8,7 @@ public class MethodOverloading {
         System.out.println(ol.add(1,2));
         System.out.println(ol.add(10.0,20.8));
         System.out.println(ol.add(1,4,6));
+        System.out.println(ol.add(1.1,2.2,3.3));
     }
     public int add(int a, int b){
         return a+b;
@@ -16,6 +17,9 @@ public class MethodOverloading {
         return a+b;
     }
     public int add(int a, int b, int c){
+        return a+b+c;
+    }
+    public double add( double a, double b, double c){
         return a+b+c;
     }
 }
